@@ -1,23 +1,21 @@
 <template>
-  <b-container fluid="md" class="pt-3 pb-3">
+  <b-container class="pt-3 pb-3">
     <app-top
       img-link="/img/bg-questionary.jpg"
       title="Региональный управляющий"
       subtitle="Анкетирование"
       card-text="Это займет всего: <span style='font-weight:700'>3 минуты</span>"
-      btn-text="Подробнее"
     />
-    <app-cards />
+    <app-step-two />
   </b-container>
 </template>
 
 <script>
 import AppTop from '@/components/questionary/AppTop'
-import AppCards from '@/components/questionary/AppCards'
+import AppStepTwo from '@/components/questionary/AppStepTwo'
 
 export default {
-  components: { AppCards, AppTop },
-  methods: {
-  }
+  middleware: 'step',
+  components: { AppStepTwo, AppTop }
 }
 </script>
