@@ -1,7 +1,7 @@
 <template>
   <b-container class="pt-3 pb-3">
     <app-top
-      img-link="/img/bg-questionary.jpg"
+      img-link="img/bg-questionary.jpg"
       title="Региональный управляющий"
       subtitle="Анкетирование"
       card-text="Это займет всего: <span style='font-weight:700'>3 минуты</span>"

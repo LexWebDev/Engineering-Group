@@ -5,7 +5,7 @@
         <b-row>
           <b-col cols="4">
             <div class="block-img">
-              <b-img center src="/img/logo.png" />
+              <b-img center src="img/logo.png" />
             </div>
           </b-col>
           <b-col cols="8">

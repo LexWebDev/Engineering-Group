@@ -5,7 +5,7 @@
         <b-row>
           <b-col cols="12">
             <div class="block-img">
-              <b-img src="/img/img-1.jpg" />
+              <b-img src="img/img-1.jpg" />
               <h1 class="section-title">
                 «Партнерство»
               </h1>

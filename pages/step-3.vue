@@ -1,7 +1,7 @@
 <template>
   <b-container class="pt-3 pb-3">
     <app-top
-      img-link="/img/winner.jpg"
+      img-link="img/winner.jpg"
       title="Выберите способ взаимодействия"
       subtitle="который Вам более интересен"
       btn-link="/info/vacancy"
