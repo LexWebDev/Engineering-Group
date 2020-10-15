@@ -27,6 +27,8 @@
             <b-btn
               variant="primary"
               class="info-btn"
+              target="_blank"
+              href="https://drive.google.com/drive/folders/12L63xhF6pEjO2Yg8uADcW6u6izYS0_WM?usp=sharing"
             >
               Скачать материалы
             </b-btn>
