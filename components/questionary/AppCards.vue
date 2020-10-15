@@ -135,12 +135,13 @@
                 class="mb-0"
                 value="Другое"
               >
-                Другое:
+                Другое
               </b-form-radio>
               <input
+                v-if="inputVisibility"
                 v-model="form.sectionOther"
-                class="input"
                 type="text"
+                class="input"
                 placeholder="Мой ответ"
               >
             </div>
