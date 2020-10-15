@@ -1,7 +1,7 @@
 <template>
   <validation-observer v-slot="{ invalid }">
     <b-row class="justify-content-center">
-      <b-col cols="12" lg="6" class="mt-3">
+      <b-col cols="12" lg="8" class="mt-3">
         <b-card>
           <label
             class="label"
@@ -25,7 +25,7 @@
       </b-col>
     </b-row>
     <b-row class="justify-content-center">
-      <b-col cols="12" lg="6" class="mt-3 text-right">
+      <b-col cols="12" lg="8" class="mt-3 text-right">
         <b-btn
           ref="btnShow"
           variant="secondary"
