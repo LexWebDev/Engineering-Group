@@ -1,50 +1,83 @@
 <template>
-  <validation-observer v-slot="{ invalid }">
-    <b-row class="justify-content-center">
-      <b-col cols="12" lg="8" class="mt-3">
-        <b-card>
-          <label
-            class="label"
-            for="name"
-          >
-            {{ form.label }} <span>*</span>
-          </label>
-          <validation-provider v-slot="{ errors }" rules="required" name="name">
-            <input
-              id="name"
-              v-model="form.fullAnswer"
-              class="input"
-              type="text"
-              placeholder="Развернутый ответ"
+  <div>
+    <validation-observer v-slot="{ invalid }">
+      <b-row class="justify-content-center">
+        <b-col cols="12" lg="8" class="mt-3">
+          <b-card>
+            <label
+              class="label"
+              for="name"
             >
-            <div class="invalid">
-              {{ errors[0] }}
-            </div>
-          </validation-provider>
-        </b-card>
-      </b-col>
-    </b-row>
-    <b-row class="justify-content-center">
-      <b-col cols="12" lg="8" class="mt-3 text-right">
-        <b-btn
-          ref="btnShow"
-          variant="secondary"
-          :disabled="invalid"
-          @click="submit(form.fullAnswer)"
-        >
-          Спец. предложение
-        </b-btn>
-      </b-col>
-    </b-row>
-  </validation-observer>
+              {{ form.label }} <span>*</span>
+            </label>
+            <validation-provider v-slot="{ errors }" rules="required" name="name">
+              <input
+                id="name"
+                v-model="form.fullAnswer"
+                class="input"
+                type="text"
+                placeholder="Развернутый ответ"
+              >
+              <div class="invalid">
+                {{ errors[0] }}
+              </div>
+            </validation-provider>
+          </b-card>
+        </b-col>
+      </b-row>
+      <b-row class="justify-content-center">
+        <b-col cols="12" lg="8" class="mt-3">
+          <b-card>
+            <app-adaptation />
+          </b-card>
+        </b-col>
+      </b-row>
+      <b-row class="justify-content-center">
+        <b-col cols="12" lg="8" class="mt-3">
+          <b-card
+            align="center"
+            title="Выберите способ взаимодействия:"
+            sub-title="По клику откроется подробное описание"
+          />
+        </b-col>
+      </b-row>
+      <b-row class="justify-content-center">
+        <b-col cols="12" lg="8" class="mt-3 text-center">
+          <b-btn
+            v-model="tabIndex"
+            variant="secondary"
+            class="button-two"
+            :disabled="invalid"
+            @click="submitPartners(form.fullAnswer)"
+          >
+            Партнерство
+          </b-btn>
+          <b-btn
+            v-model="tabIndex"
+            variant="secondary"
+            class="button-two"
+            :disabled="invalid"
+            @click="submitStaff(form.fullAnswer)"
+          >
+            Штат
+          </b-btn>
+        </b-col>
+      </b-row>
+    </validation-observer>
+    <app-modal :tab-index="tabIndex" />
+  </div>
 </template>
 
 <script>
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
+import AppAdaptation from '@/components/questionary/AppAdaptation'
+import AppModal from '@/components/info/AppModal'
 
 export default {
   name: 'AppStepTwo',
   components: {
+    AppModal,
+    AppAdaptation,
     ValidationProvider,
     ValidationObserver
   },
@@ -52,7 +85,8 @@ export default {
     form: {
       label: '',
       fullAnswer: ''
-    }
+    },
+    tabIndex: 0
   }),
   mounted () {
     const variables = {
@@ -72,16 +106,41 @@ export default {
     }
   },
   methods: {
-    submit (fAnswer) {
+    submitPartners (fAnswer) {
       this.$store.dispatch('updateAnswer', fAnswer)
 
-      this.$root.$emit('bv::show::modal', 'modal-1', '#btnShow')
+      this.tabIndex = 1
+
+      this.$bvModal.show('modal-1')
+    },
+    submitStaff (fAnswer) {
+      this.$store.dispatch('updateAnswer', fAnswer)
+
+      this.tabIndex = 2
+
+      this.$bvModal.show('modal-1')
     }
   }
 }
 </script>
 
 <style lang="scss">
+.card-img-overlay {
+  padding-top: 4rem !important;
+  padding-bottom: 4rem !important;
+}
+.card-title {
+  font-weight: bold;
+}
+.card-subtitle {
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 400;
+}
+.text-muted {
+  color: #91989e;
+}
 .label {
   display: block;
   span {
@@ -117,11 +176,37 @@ export default {
   color: #A3A3A3;
   font-weight: 300;
 }
-.btn {
+.button-two {
   font-family: Roboto, sans-serif;
-  border-radius: 8px;
-  padding-left: 35px;
-  padding-right: 35px;
   font-weight: 400;
+  width: 170px;
+  height: 50px;
+  border-radius: 8px;
+  margin-right: 15px;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+@media (max-width: 1200px) {
+  .card-img-overlay {
+    padding-top: 3.5rem !important;
+    padding-bottom: 3.5rem !important;
+  }
+}
+@media (max-width: 500px) {
+  .card-img-overlay {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+}
+@media (max-width: 410px) {
+  .button-two {
+    margin-right: 0;
+    width: 100%;
+    margin-bottom: 15px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
 </style>

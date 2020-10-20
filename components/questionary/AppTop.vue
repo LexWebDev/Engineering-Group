@@ -24,15 +24,13 @@
         </b-card>
       </b-col>
     </b-row>
-    <app-modal />
   </div>
 </template>
 
 <script>
-import AppModal from '@/components/info/AppModal'
 export default {
   name: 'AppTop',
-  components: { AppModal },
+  components: {},
   props: {
     imgLink: {
       type: String,

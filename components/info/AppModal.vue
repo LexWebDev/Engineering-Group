@@ -4,20 +4,17 @@
       id="modal-1"
       hide-backdrop
     >
-      <b-tabs pills>
-        <b-tab title="О вакансии" active>
+      <b-tabs v-model="tabIndex" pills>
+        <b-tab id="vacancy" title="О вакансии">
           <app-vacancy />
         </b-tab>
-        <b-tab title="Партнерство">
+        <b-tab id="partners" title="Партнерство">
           <app-partners />
         </b-tab>
-        <b-tab title="Адаптация">
-          <app-adaptation />
-        </b-tab>
-        <b-tab title="Штат">
+        <b-tab id="staff" title="Штат">
           <app-staff />
         </b-tab>
-        <b-tab title="Материалы">
+        <b-tab id="materials" title="Материалы">
           <app-materials />
         </b-tab>
       </b-tabs>
@@ -28,12 +25,17 @@
 <script>
 import AppVacancy from '@/components/info/AppVacancy'
 import AppPartners from '@/components/info/AppPartners'
-import AppAdaptation from '@/components/info/AppAdaptation'
 import AppStaff from '@/components/info/AppStaff'
 import AppMaterials from '@/components/info/AppMaterials'
 export default {
   name: 'AppModal',
-  components: { AppMaterials, AppStaff, AppAdaptation, AppPartners, AppVacancy },
+  components: { AppMaterials, AppStaff, AppPartners, AppVacancy },
+  props: {
+    tabIndex: {
+      type: Number,
+      default: 0
+    }
+  },
   methods: {
   }
 }
@@ -75,7 +77,7 @@ export default {
     border-radius: 0;
   }
   .nav-item {
-    font-size: 0.625rem;
+    font-size: 0.725rem;
     a {
       color: $text-color;
     }
